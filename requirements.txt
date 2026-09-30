@@ -1,0 +1,9 @@
+torch>=2.10
+transformers==5.17.0
+datasets==5.0.1
+accelerate==1.15.0
+sentencepiece==0.2.2
+numpy>=2.0
+matplotlib>=3.8
+huggingface_hub>=0.34
+safetensors>=0.5

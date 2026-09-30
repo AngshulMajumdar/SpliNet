@@ -1,0 +1,11 @@
+{
+  "repository": "SpliNet_GitHub_Repo",
+  "file_count": 55,
+  "directory_count": 14,
+  "hidden_dot_entries": 0,
+  "readme_markdown_tables": 0,
+  "selected_splinet": "order-2 single-sided",
+  "checkpoint_release_assets": 12,
+  "checkpoint_assets_embedded_in_source_repo": false,
+  "checkpoint_asset_distribution": "GitHub Release assets; hashes in artifacts/checkpoint_manifest.json"
+}

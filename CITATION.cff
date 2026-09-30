@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use SpliNet, cite the accompanying paper or this software release."
+title: "SpliNet"
+type: software
+authors:
+  - family-names: "Majumdar"
+    given-names: "Angshul"
+version: "0.1.0"
+date-released: "2026-09-30"

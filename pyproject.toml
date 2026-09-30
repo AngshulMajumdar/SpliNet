@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=70", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "splinet-mlm"
+version = "0.1.0"
+description = "SpliNet: fixed order-2 single-sided cardinal B-spline token mixing for masked language modeling"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "torch>=2.10",
+  "transformers==5.17.0",
+  "sentencepiece==0.2.2",
+  "numpy>=2.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["splinet*", "baselines*"]
