@@ -1,0 +1,61 @@
+{
+  "fineweb_edu": {
+    "source": "HuggingFaceFW/fineweb-edu",
+    "config": "sample-10BT",
+    "revision": "fc9850dff5e2d0f8f776efe41b24a1c49556cfc5",
+    "tokenizer_training_corpus": "C4",
+    "model_training_corpus": "FineWeb-Edu",
+    "tokenizer_sha256": "4837a155fbb73b166e8bc58c56a96334342e410af6ec888aeb31a0d620995b48",
+    "pretrained_tokenizer": false,
+    "pretrained_model": false,
+    "train_blocks": 193359,
+    "train_tokens": 98999808,
+    "validation_blocks": 1953,
+    "validation_tokens": 999936,
+    "sequence_length": 512,
+    "vocab_size": 32000,
+    "train_validation_document_overlap": false
+  },
+  "arxiv": {
+    "source": "ccdv/arxiv-summarization",
+    "config": "document",
+    "text_field": "article",
+    "tokenizer_training_corpus": "C4",
+    "model_training_corpus": "arXiv",
+    "tokenizer_sha256": "4837a155fbb73b166e8bc58c56a96334342e410af6ec888aeb31a0d620995b48",
+    "sequence_length": 512,
+    "train_blocks": 193359,
+    "train_tokens": 98999808,
+    "validation_blocks": 1953,
+    "validation_tokens": 999936
+  },
+  "pg19": {
+    "source": "emozilla/pg19",
+    "config": null,
+    "text_field": "text",
+    "tokenizer_training_corpus": "C4",
+    "model_training_corpus": "PG-19",
+    "tokenizer_sha256": "4837a155fbb73b166e8bc58c56a96334342e410af6ec888aeb31a0d620995b48",
+    "sequence_length": 512,
+    "train_blocks": 193359,
+    "train_tokens": 98999808,
+    "validation_blocks": 1953,
+    "validation_tokens": 999936
+  },
+  "wikitext103": {
+    "source": "Salesforce/wikitext",
+    "config": "wikitext-103-raw-v1",
+    "revision": "main",
+    "source_split": "train",
+    "text_field": "text",
+    "tokenizer_training_corpus": "C4",
+    "model_training_corpus": "WikiText-103",
+    "tokenizer_sha256": "4837a155fbb73b166e8bc58c56a96334342e410af6ec888aeb31a0d620995b48",
+    "sequence_length": 512,
+    "train_blocks": 193359,
+    "train_tokens": 98999808,
+    "validation_blocks": 1953,
+    "validation_tokens": 999936,
+    "validation_protocol": "continuation of train split after train token target; boundary example remainder discarded"
+  }
+}

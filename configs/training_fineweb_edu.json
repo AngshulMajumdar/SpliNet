@@ -1,0 +1,25 @@
+{
+  "dataset": "fineweb_edu",
+  "global_seed": 2026,
+  "data_order_seed": 7301,
+  "mask_seed": 912431,
+  "learning_rate": 0.0001,
+  "adam_betas": [
+    0.9,
+    0.999
+  ],
+  "adam_eps": 1e-08,
+  "weight_decay": 0.0,
+  "warmup_fraction": 0.01,
+  "mlm_probability": 0.15,
+  "max_predictions_per_sequence": 80,
+  "mask_replacement": "80/10/10",
+  "effective_batch": 64,
+  "splinet_micro_batch": 16,
+  "fnet_micro_batch": 16,
+  "transformer_micro_batch": 16,
+  "optimizer_updates": 3021,
+  "training_tokens": 98992128,
+  "precision": "AMP FP16; FNet FFT FP32",
+  "hardware": "Tesla T4"
+}
