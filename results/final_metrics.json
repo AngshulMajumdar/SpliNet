@@ -1,0 +1,178 @@
+{
+  "fineweb_edu": [
+    {
+      "model": "SpliNet",
+      "validation_loss": 5.032723641827626,
+      "validation_perplexity": 153.35011520689383,
+      "training_tokens": 98992128,
+      "optimizer_updates": 3021,
+      "effective_batch": 64,
+      "micro_batch": 16,
+      "gradient_accumulation": 4,
+      "training_tokens_per_second": null,
+      "peak_training_vram_gb": null,
+      "gpu": null,
+      "checkpoint_sha256": "1d0a96b615b4f7e2562f6cbe6ee973070d3cfcdb52e986dfdc53ffd66d16c1cf"
+    },
+    {
+      "model": "FNet",
+      "validation_loss": 5.095546654014237,
+      "validation_perplexity": 163.29308505078674,
+      "training_tokens": 98992128,
+      "optimizer_updates": 3021,
+      "effective_batch": 64,
+      "micro_batch": 16,
+      "gradient_accumulation": null,
+      "training_tokens_per_second": null,
+      "peak_training_vram_gb": null,
+      "gpu": null,
+      "checkpoint_sha256": "b3238be1ac9c6fdd31f44c95e718d7ee826b07b5f378ba7acf4c52f2db974356"
+    },
+    {
+      "model": "Transformer",
+      "validation_loss": 7.379987713569239,
+      "validation_perplexity": 1603.5700655588996,
+      "training_tokens": 98992128,
+      "optimizer_updates": 3021,
+      "effective_batch": 64,
+      "micro_batch": 16,
+      "gradient_accumulation": 4,
+      "training_tokens_per_second": null,
+      "peak_training_vram_gb": null,
+      "gpu": null,
+      "checkpoint_sha256": "d709f59633e2d573f535c556e20c170b6c0acb51ab90431f0aea82aac3dbc9a1"
+    }
+  ],
+  "arxiv": [
+    {
+      "model": "SpliNet",
+      "validation_loss": 3.2637716241410937,
+      "validation_perplexity": 26.14797171809298,
+      "training_tokens": 98959360,
+      "optimizer_updates": 1510,
+      "effective_batch": 128,
+      "micro_batch": 32,
+      "gradient_accumulation": 4,
+      "training_tokens_per_second": 112667.25581324399,
+      "peak_training_vram_gb": 65.5900411605835,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "checkpoint_sha256": "451fc2d2ba4549fefbb106230454006c7655653245ab0891c8998d7555d7750d"
+    },
+    {
+      "model": "FNet",
+      "validation_loss": 3.232819700217147,
+      "validation_perplexity": 25.35103861533784,
+      "training_tokens": 98959360,
+      "optimizer_updates": 1510,
+      "effective_batch": 128,
+      "micro_batch": 128,
+      "gradient_accumulation": 1,
+      "training_tokens_per_second": 111884.18618754315,
+      "peak_training_vram_gb": 68.09481620788574,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "checkpoint_sha256": "cdb4a204ffa78d76f7bbf36134ff00527b0f1e5f07765bcd315e16c2a3c1f839"
+    },
+    {
+      "model": "Transformer",
+      "validation_loss": 6.473268868715895,
+      "validation_perplexity": 647.5971809466156,
+      "training_tokens": 98959360,
+      "optimizer_updates": 1510,
+      "effective_batch": 128,
+      "micro_batch": 128,
+      "gradient_accumulation": 1,
+      "training_tokens_per_second": 104008.61877635604,
+      "peak_training_vram_gb": 74.58609390258789,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "checkpoint_sha256": "c3e16db4beb165dc5864d76929430ea5c0b4520ddb6c6bc991b13e0496f6d2f2"
+    }
+  ],
+  "pg19": [
+    {
+      "model": "SpliNet",
+      "validation_loss": 4.8971812156778,
+      "validation_perplexity": 133.911778761152,
+      "training_tokens": 98959360,
+      "optimizer_updates": 1510,
+      "effective_batch": 128,
+      "micro_batch": 32,
+      "gradient_accumulation": 4,
+      "training_tokens_per_second": 112986.64957473644,
+      "peak_training_vram_gb": 65.5900411605835,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "checkpoint_sha256": "05bd5dde3217ad68e0d2132996ff52b2cf7b94ed20d63acf9cf120fb6cc5309f"
+    },
+    {
+      "model": "FNet",
+      "validation_loss": 4.898353503085315,
+      "validation_perplexity": 134.068853903729,
+      "training_tokens": 98959360,
+      "optimizer_updates": 1510,
+      "effective_batch": 128,
+      "micro_batch": 128,
+      "gradient_accumulation": 1,
+      "training_tokens_per_second": 111973.18060801798,
+      "peak_training_vram_gb": 68.09481620788574,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "checkpoint_sha256": "081d16d036be7806b2c478b4921e43d5ee11d859ac24d07265e1ab5c6a99f914"
+    },
+    {
+      "model": "Transformer",
+      "validation_loss": 6.90104854852002,
+      "validation_perplexity": 993.3157094604329,
+      "training_tokens": 98959360,
+      "optimizer_updates": 1510,
+      "effective_batch": 128,
+      "micro_batch": 128,
+      "gradient_accumulation": 1,
+      "training_tokens_per_second": 103735.17062609896,
+      "peak_training_vram_gb": 74.58609390258789,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "checkpoint_sha256": "9ed050ab9adf648ba6719080769d828ab12ed5c2f6d3f2874b398fac12cc3c41"
+    }
+  ],
+  "wikitext103": [
+    {
+      "model": "SpliNet",
+      "validation_loss": 4.495061467440325,
+      "validation_perplexity": 89.57367468043631,
+      "training_tokens": 98959360,
+      "optimizer_updates": 1510,
+      "effective_batch": 128,
+      "micro_batch": 32,
+      "gradient_accumulation": 4,
+      "training_tokens_per_second": 113041.17916569025,
+      "peak_training_vram_gb": 65.5900411605835,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "checkpoint_sha256": "caa834abc49a889db52ba5d9999bd90c35da9787eeabee8ad41fe224a379c6aa"
+    },
+    {
+      "model": "FNet",
+      "validation_loss": 4.492972820299759,
+      "validation_perplexity": 89.38678212518795,
+      "training_tokens": 98959360,
+      "optimizer_updates": 1510,
+      "effective_batch": 128,
+      "micro_batch": 128,
+      "gradient_accumulation": 1,
+      "training_tokens_per_second": 111844.49889117804,
+      "peak_training_vram_gb": 68.09481620788574,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "checkpoint_sha256": "5d55c7c1fee8852441c81d52a9175b96c75a8cebefa867f26698c838197d3394"
+    },
+    {
+      "model": "Transformer",
+      "validation_loss": 7.030182659921459,
+      "validation_perplexity": 1130.237040341557,
+      "training_tokens": 98959360,
+      "optimizer_updates": 1510,
+      "effective_batch": 128,
+      "micro_batch": 128,
+      "gradient_accumulation": 1,
+      "training_tokens_per_second": 102735.7681949939,
+      "peak_training_vram_gb": 74.58609390258789,
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "checkpoint_sha256": "6321735083bd620e622999a38c96211bcc3b8c8aa0034f3c4a7010e150dc13bc"
+    }
+  ]
+}

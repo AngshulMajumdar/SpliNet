@@ -1,0 +1,22 @@
+{
+  "name": "SpliNet shared tokenizer",
+  "trained_from_scratch": true,
+  "pretrained_tokenizer": false,
+  "source": "allenai/c4",
+  "source_revision": "1588ec454efa1a09f29cd18ddd04fe05fc8653a2",
+  "training_segments": 1000000,
+  "source_documents_consumed": 117078,
+  "lowercase": true,
+  "model_type": "unigram",
+  "vocab_size": 32000,
+  "special_token_ids": {
+    "<unk>": 0,
+    "<s>": 1,
+    "</s>": 2,
+    "<pad>": 3,
+    "[CLS]": 4,
+    "[SEP]": 5,
+    "[MASK]": 6
+  },
+  "model_sha256": "4837a155fbb73b166e8bc58c56a96334342e410af6ec888aeb31a0d620995b48"
+}
