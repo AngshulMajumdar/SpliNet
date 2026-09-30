@@ -1,0 +1,134 @@
+[
+  {
+    "dataset": "fineweb_edu",
+    "model": "SpliNet",
+    "archive": "fineweb_edu_splinet_order2_single.zip",
+    "archive_bytes": 304573659,
+    "archive_sha256": "668cab529e394855625fb4a96680b6ec7fb62558d35372bb980938b3c7ebd2cf",
+    "checkpoint_bytes": 331626965,
+    "checkpoint_sha256": "1d0a96b615b4f7e2562f6cbe6ee973070d3cfcdb52e986dfdc53ffd66d16c1cf",
+    "state_tensor_count": 110,
+    "state_numel": 107502592
+  },
+  {
+    "dataset": "fineweb_edu",
+    "model": "FNet",
+    "archive": "fineweb_edu_fnet.zip",
+    "archive_bytes": 304548135,
+    "archive_sha256": "53248f70243f727e5a9063f94f9b10116d152b2b9c5101ee9953db3505b0cec6",
+    "checkpoint_bytes": 331626709,
+    "checkpoint_sha256": "b3238be1ac9c6fdd31f44c95e718d7ee826b07b5f378ba7acf4c52f2db974356",
+    "state_tensor_count": 110,
+    "state_numel": 107502592
+  },
+  {
+    "dataset": "fineweb_edu",
+    "model": "Transformer",
+    "archive": "fineweb_edu_transformer.zip",
+    "archive_bytes": 406572149,
+    "archive_sha256": "53598c482cff6bf02cfcc465077925c64f9411fca8c397518632373cff51b112",
+    "checkpoint_bytes": 442669099,
+    "checkpoint_sha256": "d709f59633e2d573f535c556e20c170b6c0acb51ab90431f0aea82aac3dbc9a1",
+    "state_tensor_count": 155,
+    "state_numel": 135228416
+  },
+  {
+    "dataset": "arxiv",
+    "model": "SpliNet",
+    "archive": "arxiv_splinet_order2_single.zip",
+    "archive_bytes": 304542806,
+    "archive_sha256": "c344b6704867f1cacf11c6ed203db792cec2d757823c22e642fc5ee0565d6d8c",
+    "checkpoint_bytes": 331627093,
+    "checkpoint_sha256": "451fc2d2ba4549fefbb106230454006c7655653245ab0891c8998d7555d7750d",
+    "state_tensor_count": 110,
+    "state_numel": 107502592
+  },
+  {
+    "dataset": "arxiv",
+    "model": "FNet",
+    "archive": "arxiv_fnet.zip",
+    "archive_bytes": 304552410,
+    "archive_sha256": "1468101a6937a1d93738d47b8a467ab939854762d096f8304bb8fa3a8330a589",
+    "checkpoint_bytes": 331626837,
+    "checkpoint_sha256": "cdb4a204ffa78d76f7bbf36134ff00527b0f1e5f07765bcd315e16c2a3c1f839",
+    "state_tensor_count": 110,
+    "state_numel": 107502592
+  },
+  {
+    "dataset": "arxiv",
+    "model": "Transformer",
+    "archive": "arxiv_transformer.zip",
+    "archive_bytes": 406541451,
+    "archive_sha256": "510fe3a6f64f0884cf51528248ab9c8c541f59db71f52f0d7fc14aca7885e6e6",
+    "checkpoint_bytes": 442669035,
+    "checkpoint_sha256": "c3e16db4beb165dc5864d76929430ea5c0b4520ddb6c6bc991b13e0496f6d2f2",
+    "state_tensor_count": 155,
+    "state_numel": 135228416
+  },
+  {
+    "dataset": "pg19",
+    "model": "SpliNet",
+    "archive": "pg19_splinet_order2_single.zip",
+    "archive_bytes": 304549971,
+    "archive_sha256": "f58c28018baa53cad7382dc2bb64044e1e7f62c5857eb526b8a1a2a364834098",
+    "checkpoint_bytes": 331627093,
+    "checkpoint_sha256": "05bd5dde3217ad68e0d2132996ff52b2cf7b94ed20d63acf9cf120fb6cc5309f",
+    "state_tensor_count": 110,
+    "state_numel": 107502592
+  },
+  {
+    "dataset": "pg19",
+    "model": "FNet",
+    "archive": "pg19_fnet.zip",
+    "archive_bytes": 304550745,
+    "archive_sha256": "f262fe1f2ab0241da9a674a150feb7330758c7b433839331a2dc40aeedd2e936",
+    "checkpoint_bytes": 331626837,
+    "checkpoint_sha256": "081d16d036be7806b2c478b4921e43d5ee11d859ac24d07265e1ab5c6a99f914",
+    "state_tensor_count": 110,
+    "state_numel": 107502592
+  },
+  {
+    "dataset": "pg19",
+    "model": "Transformer",
+    "archive": "pg19_transformer.zip",
+    "archive_bytes": 406636156,
+    "archive_sha256": "013a08125f014b117476b20ba3109fd2a81ba10854b7007d00dd279186f81c28",
+    "checkpoint_bytes": 442669035,
+    "checkpoint_sha256": "9ed050ab9adf648ba6719080769d828ab12ed5c2f6d3f2874b398fac12cc3c41",
+    "state_tensor_count": 155,
+    "state_numel": 135228416
+  },
+  {
+    "dataset": "wikitext103",
+    "model": "SpliNet",
+    "archive": "wikitext103_splinet_order2_single.zip",
+    "archive_bytes": 304563516,
+    "archive_sha256": "1cbb1d2b4540b4a61f3385fe7ff8d259e6ff7c48274d0c15ac96f9e2cbbe495f",
+    "checkpoint_bytes": 331627157,
+    "checkpoint_sha256": "caa834abc49a889db52ba5d9999bd90c35da9787eeabee8ad41fe224a379c6aa",
+    "state_tensor_count": 110,
+    "state_numel": 107502592
+  },
+  {
+    "dataset": "wikitext103",
+    "model": "FNet",
+    "archive": "wikitext103_fnet.zip",
+    "archive_bytes": 304557385,
+    "archive_sha256": "bfc78d00200c3b7134e62233de3534bb2108b4e98ee1af68fdf536c467b39f51",
+    "checkpoint_bytes": 331626901,
+    "checkpoint_sha256": "5d55c7c1fee8852441c81d52a9175b96c75a8cebefa867f26698c838197d3394",
+    "state_tensor_count": 110,
+    "state_numel": 107502592
+  },
+  {
+    "dataset": "wikitext103",
+    "model": "Transformer",
+    "archive": "wikitext103_transformer.zip",
+    "archive_bytes": 406573058,
+    "archive_sha256": "a59a95cada02d702596bf580519986ef8c3b75efa1aa1c400695958ab73dd68e",
+    "checkpoint_bytes": 442669099,
+    "checkpoint_sha256": "6321735083bd620e622999a38c96211bcc3b8c8aa0034f3c4a7010e150dc13bc",
+    "state_tensor_count": 155,
+    "state_numel": 135228416
+  }
+]
