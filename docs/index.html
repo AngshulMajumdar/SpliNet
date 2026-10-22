@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SpliNet: a masked-language-model encoder built around a fixed zero-parameter order-2 cardinal B-spline mixer.">
+  <meta name="theme-color" content="#07101c">
+  <title>SpliNet: Stop Learning the Mixer</title>
+  <style>
+    :root{
+      --bg:#07101c;
+      --panel:#0c1727;
+      --panel2:#101d31;
+      --text:#eaf2fb;
+      --muted:#aebdcd;
+      --cyan:#30d7ff;
+      --violet:#9b6dff;
+      --orange:#ffb23f;
+      --line:#213550;
+      --max:900px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 80% 0%, rgba(155,109,255,.12), transparent 30%),
+        radial-gradient(circle at 10% 10%, rgba(48,215,255,.08), transparent 25%),
+        var(--bg);
+      color:var(--text);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height:1.72;
+      font-size:19px;
+    }
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .hero{max-width:1180px;margin:0 auto;padding:64px 28px 26px}
+    .kicker{color:var(--cyan);font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:13px}
+    h1{font-size:clamp(46px,8vw,82px);line-height:1.02;margin:12px 0 18px;letter-spacing:-.045em}
+    .dek{max-width:820px;font-size:clamp(21px,3vw,29px);line-height:1.35;color:#c9d6e4;margin:0 0 28px}
+    .byline{color:var(--muted);font-size:15px;margin-bottom:30px}
+    .hero img{width:100%;display:block;border-radius:22px;box-shadow:0 28px 80px rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.08)}
+    article{max-width:var(--max);margin:0 auto;padding:18px 28px 90px}
+    p{margin:1.2em 0}
+    h2{font-size:clamp(30px,4vw,44px);line-height:1.15;letter-spacing:-.025em;margin:2.1em 0 .65em}
+    strong{color:#fff}
+    blockquote{
+      margin:2em 0;
+      padding:6px 0 6px 24px;
+      border-left:5px solid var(--cyan);
+      color:#fff;
+      font-size:1.45em;
+      line-height:1.35;
+      font-weight:800;
+      letter-spacing:-.02em
+    }
+    figure{
+      width:min(1160px, calc(100vw - 36px));
+      margin:2.3em 50%;
+      transform:translateX(-50%);
+    }
+    figure img{width:100%;display:block;border-radius:20px;border:1px solid rgba(255,255,255,.08);box-shadow:0 24px 65px rgba(0,0,0,.42)}
+    figcaption{max-width:var(--max);margin:10px auto 0;color:var(--muted);font-size:14px;text-align:center}
+    pre{
+      overflow:auto;
+      padding:20px 22px;
+      background:#050b13;
+      border:1px solid var(--line);
+      border-radius:14px;
+      color:#d9f5ff;
+      line-height:1.5;
+      font-size:15px;
+    }
+    code{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+    .equation{
+      margin:1.3em 0;
+      padding:20px 22px;
+      border-radius:14px;
+      background:linear-gradient(135deg,rgba(48,215,255,.08),rgba(155,109,255,.08));
+      border:1px solid var(--line);
+      font-family:"SFMono-Regular",Consolas,monospace;
+      font-size:1.05em;
+      color:#fff;
+    }
+    .callout{
+      margin:2em 0;
+      padding:22px 24px;
+      border:1px solid rgba(48,215,255,.35);
+      background:linear-gradient(135deg,rgba(48,215,255,.08),rgba(155,109,255,.06));
+      border-radius:16px;
+      font-weight:750;
+      font-size:1.1em
+    }
+    .resources{
+      margin-top:3.5em;
+      padding:28px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:18px
+    }
+    .resources h2{margin-top:0}
+    .buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+    .btn{
+      display:inline-block;padding:11px 16px;border-radius:999px;
+      background:#13243b;border:1px solid #2b4b70;color:#fff;font-weight:800;font-size:15px
+    }
+    .btn:hover{text-decoration:none;background:#19304f}
+    footer{max-width:var(--max);margin:0 auto;padding:0 28px 55px;color:#7f92a7;font-size:13px}
+    @media(max-width:700px){
+      body{font-size:18px}
+      .hero{padding-top:38px}
+      article{padding-left:20px;padding-right:20px}
+      figure{margin:2em -10px}
+      figcaption{padding:0 14px}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="kicker">Architecture · Language Models · Structured Mixing</div>
+    <h1>SpliNet: Stop Learning the Mixer</h1>
+    <p class="dek">A fixed B-spline operator does the token mixing. The network learns everything around it.</p>
+    <div class="byline">Angshul Majumdar · SpliNet</div>
+    <img src="assets/01-splinet-big-idea.png" alt="SpliNet architecture overview">
+  </header>
+
+  <article>
+    <p>SpliNet starts from an unusually simple question: <strong>does the token mixer itself need to be learned?</strong></p>
+
+    <p>Its answer is no.</p>
+
+    <p>The released SpliNet encoder uses a <strong>fixed, zero-parameter, order-2 cardinal B-spline inverse prefilter</strong> as its token mixer. The mixer never changes during training. There are no learned mixer coefficients. There is no learned interaction rule hidden inside it. The network instead learns how to build useful representations <em>around</em> that deterministic operator.</p>
+
+    <p>That single decision is the point of SpliNet.</p>
+
+    <p>The released model has 12 layers, hidden size 768, 12 heads, head dimension 64, feed-forward width 3072, maximum sequence length 512, and a 32,000-piece vocabulary. The full model has about <strong>82.9 million trainable parameters</strong>. The spline mixer contributes exactly <strong>zero</strong> of them.</p>
+
+    <blockquote>The mixer does not learn. The network learns how to use the mixer.</blockquote>
+
+    <h2>One SpliNet layer</h2>
+
+    <p>A SpliNet layer is deliberately uncomplicated. The hidden representation first passes through the fixed spline mixer. That mixed signal is added back through a residual connection and normalized. A learned feed-forward block then expands the representation from 768 to 3072 dimensions, applies the nonlinearity, projects back to 768, and enters the second residual-normalization stage.</p>
+
+    <pre><code>input
+  → fixed spline mixer
+  → residual + LayerNorm
+  → feed-forward 768 → 3072 → 768
+  → residual + LayerNorm</code></pre>
+
+    <p>The crucial point is where learning happens. <strong>The token interaction rule is fixed. The nonlinear representation machinery is learned.</strong></p>
+
+    <h2>Inside the mixer</h2>
+
+    <p>The input to the mixer has shape <code>[B, L, 768]</code>. SpliNet reshapes that hidden dimension into 12 groups of 64 features:</p>
+
+    <div class="equation">[B, L, 768] → [B, 12, L, 64]</div>
+
+    <p>Nothing exotic happens after that. Every head-feature signal is treated as a one-dimensional sequence of length <code>L</code>. SpliNet applies the same fixed inverse-spline filter independently along that sequence axis.</p>
+
+    <figure>
+      <img src="assets/02-inside-splinet-mixer.png" alt="Inside the SpliNet mixer">
+      <figcaption>The fixed mixer is applied independently to each head-feature sequence, then the original hidden shape is restored.</figcaption>
+    </figure>
+
+    <p>The implementation flattens all <code>B × 12 × 64</code> sequence signals into one batch, applies reflected padding with radius 16, performs one batched <code>conv1d</code>, and restores the original shape.</p>
+
+    <p>This matters because the word <strong>multi-head</strong> can easily suggest something more complicated than what is actually happening. The heads are simply a structured reshape for the sequence mixer. There is <strong>no cross-head mixing inside the spline operator</strong> and there are no different learned filters for different heads. Every head and every feature sees the same deterministic kernel.</p>
+
+    <p>After the mixer is restored to <code>[B, L, 768]</code>, the learned feed-forward block again operates on the full hidden representation. The model is therefore not twelve isolated streams. The separation applies specifically to the fixed spline-mixing step.</p>
+
+    <h2>The kernel is the architecture</h2>
+
+    <p>The released SpliNet uses the stable pole</p>
+
+    <div class="equation">z = −3 + 2√2 ≈ −0.1715728753</div>
+
+    <p>and the truncated inverse-filter kernel</p>
+
+    <div class="equation">h[k] = √2 · z<sup>|k|</sup>, &nbsp; |k| ≤ 16</div>
+
+    <p>That gives a symmetric 33-tap filter from <code>k = −16</code> to <code>k = +16</code>.</p>
+
+    <figure>
+      <img src="assets/03-fixed-spline-kernel.png" alt="The fixed order-2 inverse B-spline kernel used by SpliNet">
+      <figcaption>One deterministic order-2 inverse-spline kernel is reused throughout the mixer.</figcaption>
+    </figure>
+
+    <p>Three properties matter immediately.</p>
+
+    <p>First, the pole has magnitude much smaller than one: <code>|z| ≈ 0.1716</code>. The coefficients therefore decay extremely fast away from the center. By offset 16, the coefficient magnitude is only about <code>8 × 10^-13</code>. So radius 16 is not an arbitrary-looking local window hiding a large discarded tail. For this kernel, it captures the practically relevant inverse-filter support extraordinarily well.</p>
+
+    <p>Second, the signs alternate. This is not a smoothing kernel. It is an <strong>inverse-spline prefilter</strong>: it reshapes the sequence signal so that the spline structure does not simply blur away variation.</p>
+
+    <p>Third, the same kernel is reused everywhere. It is not re-estimated at every layer, head, batch, or token position. The token-mixing law is part of the architecture itself.</p>
+
+    <h2>Why this can work</h2>
+
+    <p>A fixed mixer sounds restrictive only if we assume that expressivity must come from the mixer. SpliNet makes a different allocation of responsibility.</p>
+
+    <p>The spline operator supplies <strong>structured interaction across nearby token positions</strong>. The learned parts of the network then decide what to do with that interaction.</p>
+
+    <figure>
+      <img src="assets/04-why-spline-mixer-works.png" alt="Why the SpliNet spline mixer works">
+      <figcaption>The inverse-spline kernel performs a controlled spectral reweighting; depth and learned nonlinear blocks turn that structured signal into representation.</figcaption>
+    </figure>
+
+    <p>The spectral behavior helps explain the choice. The radius-16 inverse-spline kernel has a smooth, bounded response that rises from roughly 1 at low sequence frequency toward roughly 2 at the high-frequency end. In plain language: the mixer does not flatten the sequence into a low-detail signal. It performs a controlled reweighting of sequence variation.</p>
+
+    <p>That controlled operator is followed immediately by a residual path and LayerNorm. The original representation therefore remains available while the mixed representation is injected into it, and the scale is normalized before the learned nonlinear block takes over.</p>
+
+    <div class="callout">Structure can provide the interaction; learning can provide the representation.</div>
+
+    <p>The network does not need to spend parameters discovering a token-mixing stencil if a useful one can be built into the architecture from the start.</p>
+
+    <h2>Local mixing does not stay local</h2>
+
+    <p>Each SpliNet layer has radius 16, so one layer directly couples a token to a local neighborhood. But the encoder stacks 12 such layers.</p>
+
+    <p>Repeated application expands the theoretical support of influence. Ignoring clipping at the ends of a finite sequence, the radius grows linearly with depth:</p>
+
+    <pre><code>1 layer   → ±16 positions
+3 layers  → ±48 positions
+6 layers  → ±96 positions
+12 layers → ±192 positions</code></pre>
+
+    <figure>
+      <img src="assets/05-context-grows-with-depth.png" alt="Context grows with depth in SpliNet">
+      <figcaption>A local radius-16 mixer becomes a much broader contextual operator through composition.</figcaption>
+    </figure>
+
+    <p>This is important conceptually. SpliNet does not need a single layer to perform every possible interaction. A local deterministic operation becomes a much broader contextual operator through composition.</p>
+
+    <p>And because every layer also contains a residual path, the architecture does not merely diffuse the signal outward. Each stage combines the original layer input with its spline-mixed neighborhood before the learned nonlinear transformation.</p>
+
+    <h2>What SpliNet actually learns</h2>
+
+    <p>Freezing the mixer does <strong>not</strong> mean freezing the model.</p>
+
+    <p>The word embeddings are learned. The position embeddings are learned. The type embeddings are learned. The LayerNorm parameters are learned. Every feed-forward block is learned. The masked-language-model prediction head is learned.</p>
+
+    <p>Only the token-mixing law is fixed.</p>
+
+    <figure>
+      <img src="assets/06-fixed-vs-learned.png" alt="Fixed and learned parts of SpliNet">
+      <figcaption>SpliNet freezes the mixing rule while leaving the representation machinery trainable.</figcaption>
+    </figure>
+
+    <p>The training objective is masked-language modeling. Fifteen percent of eligible tokens are selected, with at most 80 prediction targets in a 512-token sequence, using the 80/10/10 mask-random-unchanged replacement rule.</p>
+
+    <p>The gradient therefore changes the representation machinery surrounding the mixer, but <strong>never changes the spline kernel itself</strong>.</p>
+
+    <pre><code>FIXED
+  token interaction geometry
+
+LEARNED
+  representation of tokens
+  nonlinear feature transformation
+  normalization scales and offsets
+  prediction mapping</code></pre>
+
+    <p>That separation is what makes SpliNet interesting. It asks whether learning capacity is better spent on representing information than on relearning the basic geometry through which token signals interact.</p>
+
+    <h2>One important naming detail: “single-sided” does not mean causal</h2>
+
+    <p>The released configuration is described as <strong>order-2, single-sided</strong>. In the SpliNet implementation, “single-sided” means that the spline transform is applied <strong>only along the sequence axis</strong>.</p>
+
+    <p>It does <strong>not</strong> mean left-to-right causal filtering.</p>
+
+    <div class="equation">h[−k] = h[k]</div>
+
+    <p>The actual released kernel is symmetric, and reflected padding is used at the sequence boundaries. That distinction matters because the implementation is an encoder for masked-language modeling, not a causal decoder.</p>
+
+    <h2>The implementation is almost brutally simple</h2>
+
+    <p>At the center of SpliNet, the mixer reduces to the following logic:</p>
+
+    <pre><code># x: [B, H, L, Dh]
+y = x.permute(0, 1, 3, 2).reshape(B * H * Dh, 1, L)
+y = reflect_pad(y, radius=16)
+y = conv1d(y, fixed_order2_inverse_spline_kernel)
+y = y.reshape(B, H, Dh, L).permute(0, 1, 3, 2)</code></pre>
+
+    <p>That is the token mixer.</p>
+
+    <p>No learned coefficients are hiding elsewhere in it. The complexity is pushed out of the mixing rule and into the learned representation stack that surrounds it.</p>
+
+    <h2>Loading SpliNet</h2>
+
+    <p>The public repository provides a builder for the released architecture:</p>
+
+    <pre><code>from splinet.builders import build_splinet
+
+model = build_splinet(matched_to_fnet=False)
+model.eval()</code></pre>
+
+    <p>The released Hugging Face model is also packaged as a Transformers masked-language model with custom SpliNet code.</p>
+
+    <h2>The larger idea</h2>
+
+    <p>SpliNet is not interesting because a spline appears inside a language model. The deeper idea is more general.</p>
+
+    <p>Neural architectures often treat every interaction mechanism as something to learn. SpliNet deliberately refuses to do that for token mixing. It puts a mathematically specified operator in the middle of the network, freezes it completely, and lets the surrounding learned layers adapt to it.</p>
+
+    <p>That gives the architecture a strong inductive bias without turning the whole model into a hand-designed signal-processing pipeline. The spline operation supplies a stable and structured way for neighboring token signals to interact. The learned embeddings and feed-forward blocks remain free to construct the representation required by the language objective.</p>
+
+    <blockquote>What if token mixing is infrastructure rather than intelligence?</blockquote>
+
+    <p>SpliNet’s answer is to make the infrastructure deterministic—and spend the learning budget on everything that uses it.</p>
+
+    <section class="resources">
+      <h2>SpliNet resources</h2>
+      <p>Code, architecture details, reproducibility material, and the released model are available publicly.</p>
+      <div class="buttons">
+        <a class="btn" href="https://github.com/AngshulMajumdar/SpliNet" target="_blank" rel="noopener">GitHub repository</a>
+        <a class="btn" href="https://huggingface.co/Angshul/SpliNet" target="_blank" rel="noopener">Hugging Face model</a>
+      </div>
+    </section>
+  </article>
+
+  <footer>© Angshul Majumdar · SpliNet</footer>
+</body>
+</html>
